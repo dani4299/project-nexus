@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Meta -->
+  <title>Nexum — The All-in-One Business Infrastructure Device</title>
+  <meta name="description" content="Nexum replaces your stack of SaaS subscriptions with a single, elegant physical device. Network management, local AI, secure storage, and IoT — all under your roof." />
+  <meta name="keywords" content="small business infrastructure, local server, network management, local AI assistant, IoT integration, NAS device, on-premise storage, SaaS alternative" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://nexum.io/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Nexum — Your Business. Fully In Control." />
+  <meta property="og:description" content="One device. Network, storage, AI, and IoT — all on-premise. No subscriptions, no lock-in, no compromise." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nexum.io/" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0c0b09;
+      --bg-2: #111008;
+      --bg-card: #161410;
+      --border: rgba(255,210,120,0.12);
+      --border-bright: rgba(255,210,120,0.28);
+      --gold: #e8b94a;
+      --gold-dim: #a07c28;
+      --gold-light: #f5d98a;
+      --text: #e8e4d9;
+      --text-dim: #8a8270;
+      --text-faint: #3d3a30;
+      --white: #faf8f2;
+      --accent-red: #c0392b;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 5vw;
+      background: linear-gradient(to bottom, rgba(12,11,9,0.95) 0%, transparent 100%);
+      backdrop-filter: blur(2px);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--text); font-weight: 400; }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--gold);
+      border: none;
+      padding: 0.65rem 1.5rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 5vw 5rem;
+      gap: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -10%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 55vw;
+      height: 55vw;
+      background: radial-gradient(ellipse, rgba(232,185,74,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 2rem;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5.5vw, 5.2rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      margin-bottom: 1.8rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      max-width: 440px;
+      line-height: 1.75;
+      margin-bottom: 2.8rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--gold);
+      border: none;
+      padding: 1rem 2.2rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(232,185,74,0.25);
+    }
+
+    .btn-ghost {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      border-bottom: 1px solid var(--text-faint);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* ── HERO DEVICE VISUAL ── */
+    .hero-device {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .device-wrap {
+      position: relative;
+      width: 200px;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-18px); }
+    }
+
+    .device-body {
+      width: 200px;
+      height: 520px;
+      background: linear-gradient(160deg, #1e1b14 0%, #0e0c08 60%, #1a1710 100%);
+      border: 1px solid var(--border-bright);
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(255,210,120,0.05),
+        0 30px 80px rgba(0,0,0,0.8),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+
+    .device-screen {
+      position: absolute;
+      top: 10px; left: 10px; right: 10px;
+      height: 380px;
+      background: #0a0905;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255,210,120,0.08);
+    }
+
+    .screen-content {
+      padding: 16px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .screen-bar {
+      height: 6px;
+      border-radius: 3px;
+      background: var(--gold);
+      opacity: 0.7;
+      animation: pulse-bar 3s ease-in-out infinite;
+    }
+    .screen-bar:nth-child(2) { width: 70%; opacity: 0.4; animation-delay: 0.4s; }
+    .screen-bar:nth-child(3) { width: 85%; opacity: 0.25; animation-delay: 0.8s; }
+
+    @keyframes pulse-bar {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 0.3; }
+    }
+
+    .screen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .screen-card {
+      height: 52px;
+      background: rgba(232,185,74,0.06);
+      border-radius: 6px;
+      border: 1px solid rgba(232,185,74,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .screen-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.6;
+      animation: blink 2s ease-in-out infinite;
+    }
+    .screen-card:nth-child(2) .screen-dot { animation-delay: 0.5s; background: #4ecdc4; }
+    .screen-card:nth-child(3) .screen-dot { animation-delay: 1s; background: #e74c3c; }
+    .screen-card:nth-child(4) .screen-dot { animation-delay: 1.5s; background: #9b59b6; }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+
+    .screen-line {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(232,185,74,0.3), transparent);
+      margin-top: 8px;
+    }
+
+    .screen-text-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-top: 4px;
+    }
+    .stl {
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(232,185,74,0.15);
+    }
+    .stl:nth-child(1) { width: 90%; }
+    .stl:nth-child(2) { width: 65%; }
+    .stl:nth-child(3) { width: 78%; }
+
+    .device-base {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 130px;
+      background: linear-gradient(to top, rgba(232,185,74,0.04), transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .device-led {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 8px var(--gold), 0 0 20px rgba(232,185,74,0.4);
+      animation: led 2.5s ease-in-out infinite;
+    }
+    @keyframes led {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .device-model {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+    }
+
+    /* Glow ring behind device */
+    .device-glow {
+      position: absolute;
+      width: 350px; height: 350px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(232,185,74,0.09) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 2rem 5vw;
+      display: flex;
+      justify-content: space-around;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-top: 0.4rem;
+    }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 7rem 5vw; }
+
+    .section-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      font-weight: 700;
+      line-height: 1.12;
+      color: var(--white);
+      margin-bottom: 1.2rem;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--text-dim);
+      max-width: 520px;
+      line-height: 1.8;
+    }
+
+    /* ── PROBLEM SECTION ── */
+    .problem {
+      background: var(--bg-2);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .problem-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .pill {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1.2rem 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent-red);
+      transition: border-color 0.2s;
+    }
+    .pill:hover { border-left-color: var(--gold); }
+
+    .pill-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .pill-text {
+      font-size: 0.92rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+    .pill-text strong { color: var(--text); font-weight: 500; }
+
+    /* ── FEATURES ── */
+    .features { background: var(--bg); }
+
+    .features-header {
+      text-align: center;
+      max-width: 580px;
+      margin: 0 auto 5rem;
+    }
+    .features-header .section-sub { margin: 0 auto; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+    }
+
+    .feat-card {
+      background: var(--bg-card);
+      padding: 2.8rem 2.2rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+    .feat-card:hover { background: #1a1710; }
+
+    .feat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .feat-card:hover::before { opacity: 1; }
+
+    .feat-number {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--gold-dim);
+      margin-bottom: 1.5rem;
+    }
+
+    .feat-icon {
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+      display: block;
+      filter: grayscale(0.3);
+    }
+
+    .feat-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+      line-height: 1.2;
+    }
+
+    .feat-desc {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.75;
+    }
+
+    .feat-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.4rem;
+    }
+
+    .feat-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      border: 1px solid rgba(232,185,74,0.2);
+      padding: 0.25rem 0.6rem;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how {
+      background: var(--bg-2);
+    }
+
+    .how-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .step {
+      display: flex;
+      gap: 1.8rem;
+      position: relative;
+      padding-bottom: 2.5rem;
+    }
+
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 16px;
+      top: 36px;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--border-bright), transparent);
+    }
+
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--border-bright);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      background: var(--bg);
+    }
+
+    .step-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+
+    .step-content p {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    .how-visual {
+      position: sticky;
+      top: 8rem;
+    }
+
+    .comparison-table {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .ct-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ct-col {
+      padding: 1rem 1.2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .ct-col:nth-child(2) { color: var(--text-dim); border-right: 1px solid var(--border); }
+    .ct-col:nth-child(3) { color: var(--gold); background: rgba(232,185,74,0.04); }
+
+    .ct-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid rgba(255,210,120,0.06);
+    }
+    .ct-row:last-child { border-bottom: none; }
+
+    .ct-cell {
+      padding: 1rem 1.2rem;
+      font-size: 0.82rem;
+      color: var(--text-dim);
+    }
+    .ct-cell:nth-child(1) { color: var(--text); font-size: 0.8rem; }
+    .ct-cell:nth-child(2) { border-right: 1px solid var(--border); }
+    .ct-cell:nth-child(3) { color: var(--gold); background: rgba(232,185,74,0.04); }
+
+    .check { color: var(--gold); }
+    .cross { color: var(--accent-red); }
+
+    /* ── DESIGN SECTION ── */
+    .design-section {
+      background: var(--bg);
+      text-align: center;
+    }
+
+    .design-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .device-showcase {
+      margin: 4rem auto;
+      position: relative;
+      width: fit-content;
+    }
+
+    .device-tall {
+      width: 120px;
+      height: 420px;
+      background: linear-gradient(160deg, #201d14 0%, #0e0c08 70%);
+      border: 1px solid var(--border-bright);
+      border-radius: 12px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 0 60px rgba(232,185,74,0.12),
+        0 40px 100px rgba(0,0,0,0.9);
+    }
+
+    .device-tall-screen {
+      position: absolute;
+      top: 8px; left: 8px; right: 8px;
+      height: 320px;
+      background: linear-gradient(180deg, #0a1520 0%, #080d15 100%);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px;
+    }
+
+    .ad-line {
+      height: 5px;
+      width: 80%;
+      background: var(--gold);
+      border-radius: 3px;
+      opacity: 0.7;
+    }
+    .ad-line:nth-child(2) { width: 55%; opacity: 0.4; }
+    .ad-line:nth-child(3) { width: 68%; opacity: 0.25; }
+
+    .design-caption {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      margin-top: 1.5rem;
+      font-style: italic;
+    }
+
+    .design-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+      text-align: left;
+    }
+
+    .dp {
+      padding: 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+    }
+    .dp-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .dp-text {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, #12100a 0%, #0c0b09 50%, #14120d 100%);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 8rem 5vw;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(ellipse, rgba(232,185,74,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .cta-section .section-title { margin-bottom: 1rem; }
+    .cta-section .section-sub { margin: 0 auto 3rem; text-align: center; }
+
+    .cta-form {
+      display: flex;
+      gap: 0;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .cta-input {
+      flex: 1;
+      padding: 1rem 1.2rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border-bright);
+      border-right: none;
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .cta-input::placeholder { color: var(--text-faint); }
+    .cta-input:focus { border-color: var(--gold); }
+
+    .cta-btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 1rem 1.6rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .cta-btn:hover { background: var(--gold-light); }
+
+    .cta-note {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      color: var(--text-faint);
+      margin-top: 1rem;
+      text-transform: uppercase;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+    }
+
+    .footer-copy {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ── ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; padding-top: 7rem; text-align: center; }
+      .hero-sub { margin: 0 auto 2.5rem; }
+      .hero-actions { justify-content: center; }
+      .hero-tag { justify-content: center; }
+      .hero-device { display: none; }
+      .problem { grid-template-columns: 1fr; }
+      .how-inner { grid-template-columns: 1fr; }
+      .how-visual { position: static; }
+      .design-points { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .cta-form { flex-direction: column; }
+      .cta-input { border-right: 1px solid var(--border-bright); border-bottom: none; }
+      footer { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-logo" href="#">Nexum<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#design">Hardware</a></li>
+  </ul>
+  <a class="nav-cta" href="#waitlist">Join Waitlist</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-left reveal">
+    <div class="hero-tag">All-in-One Business Infrastructure</div>
+    <h1>Your Business.<br /><em>Fully</em> In<br />Control.</h1>
+    <p class="hero-sub">One physical device replaces your entire SaaS stack. Network management, local AI, encrypted storage, and IoT — all under your roof, fully yours.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#waitlist">Request Early Access</a>
+      <a class="btn-ghost" href="#features">See Features →</a>
+    </div>
+  </div>
+
+  <div class="hero-device reveal">
+    <div class="device-glow"></div>
+    <div class="device-wrap">
+      <div class="device-body">
+        <div class="device-screen">
+          <div class="screen-content">
+            <div class="screen-bar"></div>
+            <div class="screen-bar"></div>
+            <div class="screen-bar"></div>
+            <div class="screen-grid">
+              <div class="screen-card"><div class="screen-dot"></div></div>
+              <div class="screen-card"><div class="screen-dot"></div></div>
+              <div class="screen-card"><div class="screen-dot"></div></div>
+              <div class="screen-card"><div class="screen-dot"></div></div>
+            </div>
+            <div class="screen-line"></div>
+            <div class="screen-text-lines">
+              <div class="stl"></div>
+              <div class="stl"></div>
+              <div class="stl"></div>
+            </div>
+          </div>
+        </div>
+        <div class="device-base">
+          <div class="device-led"></div>
+          <div class="device-model">Nexum OS · v1.0</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS ── -->
+<div class="stats-strip">
+  <div class="stat-item reveal">
+    <div class="stat-num">$0</div>
+    <div class="stat-label">Monthly SaaS Fees</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num">4-in-1</div>
+    <div class="stat-label">Feature Pillars</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Your Data, Your Premises</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num">5 min</div>
+    <div class="stat-label">IoT Device Setup</div>
+  </div>
+</div>
+
+<!-- ── PROBLEM ── -->
+<section class="problem" id="problem">
+  <div class="reveal">
+    <div class="section-tag">The Problem</div>
+    <h2 class="section-title">SaaS Is Bleeding You <em style="font-style:italic;color:var(--gold)">Dry.</em></h2>
+    <p class="section-sub">Modern businesses are stitched together from dozens of disconnected tools. Every month you pay more, get less control, and drift further from what actually matters — your business.</p>
+  </div>
+  <div class="problem-pills reveal">
+    <div class="pill">
+      <div class="pill-icon">💸</div>
+      <div class="pill-text"><strong>Subscription creep</strong> — tools stack up invisibly until the monthly bill becomes a second payroll.</div>
+    </div>
+    <div class="pill">
+      <div class="pill-icon">🔒</div>
+      <div class="pill-text"><strong>Vendor lock-in</strong> — cloud providers raise prices once you're fully settled in. You have no leverage.</div>
+    </div>
+    <div class="pill">
+      <div class="pill-icon">⚠️</div>
+      <div class="pill-text"><strong>Data exposure</strong> — your sensitive business data lives on someone else's servers in someone else's country.</div>
+    </div>
+    <div class="pill">
+      <div class="pill-icon">🧩</div>
+      <div class="pill-text"><strong>Fragmentation</strong> — tools don't talk to each other, causing operational burnout and wasted admin hours.</div>
+    </div>
+    <div class="pill">
+      <div class="pill-icon">📉</div>
+      <div class="pill-text"><strong>No IT control</strong> — even seeing who's on your own network requires an external specialist.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURES ── -->
+<section class="features" id="features">
+  <div class="features-header reveal">
+    <div class="section-tag">Core Capabilities</div>
+    <h2 class="section-title">Everything. One Box.</h2>
+    <p class="section-sub">Nexum ships with four fully-integrated capability pillars, managed from a single elegant dashboard.</p>
+  </div>
+
+  <div class="features-grid">
+
+    <div class="feat-card reveal">
+      <div class="feat-number">01 / 04</div>
+      <span class="feat-icon">📡</span>
+      <h3 class="feat-title">Advanced Network Management</h3>
+      <p class="feat-desc">See every device on your network in real time — their details, activity, and connection history. Grant admin, guest, or custom access from a single dashboard. No IT contractor required, ever.</p>
+      <div class="feat-tags">
+        <span class="feat-tag">Device Monitoring</span>
+        <span class="feat-tag">Access Control</span>
+        <span class="feat-tag">Guest Network</span>
+        <span class="feat-tag">Activity Logs</span>
+      </div>
+    </div>
+
+    <div class="feat-card reveal">
+      <div class="feat-number">02 / 04</div>
+      <span class="feat-icon">🗄️</span>
+      <h3 class="feat-title">Encrypted Local Storage</h3>
+      <p class="feat-desc">Massive on-premise storage tailored to your capacity needs. Fully encrypted, remotely accessible, and with granular permission control. Pay once — stop paying forever.</p>
+      <div class="feat-tags">
+        <span class="feat-tag">AES Encryption</span>
+        <span class="feat-tag">Remote Access</span>
+        <span class="feat-tag">No Monthly Fees</span>
+        <span class="feat-tag">Custom Permissions</span>
+      </div>
+    </div>
+
+    <div class="feat-card reveal">
+      <div class="feat-number">03 / 04</div>
+      <span class="feat-icon">🤖</span>
+      <h3 class="feat-title">Integrated Local AI</h3>
+      <p class="feat-desc">A locally-running AI assistant built for your business. No rate limits, no price hikes, no outages. It remembers context, issues reminders, and handles the small decisions that clog your workflow.</p>
+      <div class="feat-tags">
+        <span class="feat-tag">Runs Offline</span>
+        <span class="feat-tag">Customizable</span>
+        <span class="feat-tag">Remote Access</span>
+        <span class="feat-tag">Business Memory</span>
+      </div>
+    </div>
+
+    <div class="feat-card reveal">
+      <div class="feat-number">04 / 04</div>
+      <span class="feat-icon">📷</span>
+      <h3 class="feat-title">IoT Device Integration</h3>
+      <p class="feat-desc">Connect commercially available security cameras, doorbells, and smart thermostats in minutes — no technical expertise needed. Data is stored locally for 30 days and then auto-purged for privacy.</p>
+      <div class="feat-tags">
+        <span class="feat-tag">Cameras & Doorbells</span>
+        <span class="feat-tag">30-Day Retention</span>
+        <span class="feat-tag">Admin Dashboard</span>
+        <span class="feat-tag">No Setup Expert</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="how" id="how">
+  <div class="how-inner">
+    <div>
+      <div class="section-tag reveal">How It Works</div>
+      <h2 class="section-title reveal">Plug In. Take Control.</h2>
+      <p class="section-sub reveal">Nexum is designed to be operational within an afternoon — no specialist, no cloud onboarding, no calls with support.</p>
+      <br /><br />
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <h3>Unbox & Place</h3>
+            <p>Position the Nexum device in your office. The vertical screen doubles as a business display the moment it powers on.</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <h3>Connect to Your Network</h3>
+            <p>A guided setup wizard connects Nexum to your router. Within minutes the network dashboard populates with all connected devices.</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <h3>Add Your Devices & Data</h3>
+            <p>Migrate files to local storage, pair IoT devices, and set team access privileges — all from one unified admin panel.</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <h3>Cut the Subscriptions</h3>
+            <p>Cancel your fragmented SaaS stack. Nexum handles what used to take five tools — from anywhere, on any device.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="how-visual reveal">
+      <div class="comparison-table">
+        <div class="ct-header">
+          <div class="ct-col" style="color:var(--text-dim)">Capability</div>
+          <div class="ct-col">SaaS Stack</div>
+          <div class="ct-col">Nexum</div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-cell">Network visibility</div>
+          <div class="ct-cell"><span class="cross">✗</span> External IT</div>
+          <div class="ct-cell"><span class="check">✓</span> Built-in</div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-cell">Data storage</div>
+          <div class="ct-cell"><span class="cross">✗</span> Monthly bill</div>
+          <div class="ct-cell"><span class="check">✓</span> One-time</div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-cell">AI assistant</div>
+          <div class="ct-cell"><span class="cross">✗</span> Rate limits</div>
+          <div class="ct-cell"><span class="check">✓</span> Local & always on</div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-cell">IoT security</div>
+          <div class="ct-cell"><span class="cross">✗</span> Separate app</div>
+          <div class="ct-cell"><span class="check">✓</span> Unified panel</div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-cell">Data ownership</div>
+          <div class="ct-cell"><span class="cross">✗</span> Vendor's servers</div>
+          <div class="ct-cell"><span class="check">✓</span> Your premises</div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-cell">Price over time</div>
+          <div class="ct-cell"><span class="cross">✗</span> Increasing</div>
+          <div class="ct-cell"><span class="check">✓</span> Flat</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DESIGN SECTION ── -->
+<section class="design-section" id="design">
+  <div class="design-inner">
+    <div class="reveal">
+      <div class="section-tag">Hardware Design</div>
+      <h2 class="section-title">Infrastructure That<br /><em style="font-style:italic;color:var(--gold)">Belongs</em> in Your Space.</h2>
+      <p class="section-sub" style="margin:0 auto;">Nexum isn't tucked behind a server rack. Its elegant vertical form is designed to stand proudly in your office — doing two jobs at once.</p>
+    </div>
+
+    <div class="device-showcase reveal">
+      <div class="device-tall">
+        <div class="device-tall-screen">
+          <div class="ad-line"></div>
+          <div class="ad-line"></div>
+          <div class="ad-line"></div>
+          <div style="margin-top:8px; width:60%; height:1px; background:rgba(232,185,74,0.15)"></div>
+          <div style="width:40px;height:40px;border-radius:50%;background:rgba(232,185,74,0.06);border:1px solid rgba(232,185,74,0.15);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-top:8px;">📢</div>
+        </div>
+      </div>
+    </div>
+    <p class="design-caption reveal">5-foot vertical display — your storefront, your message, your control.</p>
+
+    <div class="design-points reveal">
+      <div class="dp">
+        <div class="dp-label">Display</div>
+        <div class="dp-text">~5ft vertical screen for announcements, ads, or real-time business metrics.</div>
+      </div>
+      <div class="dp">
+        <div class="dp-label">Form Factor</div>
+        <div class="dp-text">Slim, upright silhouette designed to complement modern office interiors.</div>
+      </div>
+      <div class="dp">
+        <div class="dp-label">Build</div>
+        <div class="dp-text">Premium materials with a minimal industrial aesthetic — built to last a decade.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA / WAITLIST ── -->
+<section class="cta-section" id="waitlist">
+  <div class="section-tag reveal" style="justify-content:center;display:flex;">Early Access</div>
+  <h2 class="section-title reveal">Be the First to<br />Own Your Infrastructure.</h2>
+  <p class="section-sub reveal">Join the waitlist and get priority access when Nexum ships. No spam. Just the update that matters.</p>
+  <form class="cta-form reveal" onsubmit="handleWaitlist(event)">
+    <input class="cta-input" type="email" id="email-input" placeholder="your@business.com" required />
+    <button class="cta-btn" type="submit">Join Waitlist</button>
+  </form>
+  <p class="cta-note reveal" id="waitlist-msg">No credit card. No commitment. Cancel anytime.</p>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo">Nexum.</div>
+  <ul class="footer-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#waitlist">Waitlist</a></li>
+    <li><a href="#">Privacy</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 Nexum. All rights reserved.</div>
+</footer>
+
+<script>
+  // Intersection Observer for reveal animations
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.style.transitionDelay = (i * 0.04) + 's';
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  reveals.forEach(el => io.observe(el));
+
+  // Waitlist form
+  function handleWaitlist(e) {
+    e.preventDefault();
+    const email = document.getElementById('email-input').value;
+    const msg = document.getElementById('waitlist-msg');
+    msg.textContent = `✓ ${email} is on the list. We'll be in touch.`;
+    msg.style.color = 'var(--gold)';
+    document.getElementById('email-input').value = '';
+  }
+</script>
+
+<!-- Structured Data for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Nexum",
+  "description": "An all-in-one on-premise business infrastructure device featuring network management, encrypted local storage, a local AI assistant, and IoT device integration.",
+  "category": "Business Infrastructure Hardware",
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/PreOrder",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+
+</body>
+</html>
